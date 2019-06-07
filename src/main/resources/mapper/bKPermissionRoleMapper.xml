@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsonshop.lemonshop.Mapper.bKPermissionRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.jsonshop.lemonshop.entity.bKPermissionRole" >
+    <constructor >
+      <idArg column="permission_role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="permission_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from back_permission_role
+    where permission_role_id = #{permissionRoleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jsonshop.lemonshop.entity.bKPermissionRole" >
+    insert into back_permission_role (permission_role_id, permission_id, role_id
+      )
+    values (#{permissionRoleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jsonshop.lemonshop.entity.bKPermissionRole" >
+    update back_permission_role
+    set permission_id = #{permissionId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER}
+    where permission_role_id = #{permissionRoleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select permission_role_id, permission_id, role_id
+    from back_permission_role
+    where permission_role_id = #{permissionRoleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select permission_role_id, permission_id, role_id
+    from back_permission_role
+  </select>
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsonshop.lemonshop.Mapper.bkuserLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.jsonshop.lemonshop.entity.bkuserLogin" >
+    <constructor >
+      <idArg column="admin_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="admin_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="admin_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="admin_salt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="admin_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="admin_isvalid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="admin_createtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="admin_updatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="admin_deletetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from back_login
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jsonshop.lemonshop.entity.bkuserLogin" >
+    insert into back_login (admin_id, admin_name, admin_password, 
+      admin_salt, admin_type, admin_isvalid, 
+      admin_createtime, admin_updatetime, admin_deletetime
+      )
+    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, 
+      #{adminSalt,jdbcType=VARCHAR}, #{adminType,jdbcType=VARCHAR}, #{adminIsvalid,jdbcType=INTEGER}, 
+      #{adminCreatetime,jdbcType=TIMESTAMP}, #{adminUpdatetime,jdbcType=TIMESTAMP}, #{adminDeletetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jsonshop.lemonshop.entity.bkuserLogin" >
+    update back_login
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_password = #{adminPassword,jdbcType=VARCHAR},
+      admin_salt = #{adminSalt,jdbcType=VARCHAR},
+      admin_type = #{adminType,jdbcType=VARCHAR},
+      admin_isvalid = #{adminIsvalid,jdbcType=INTEGER},
+      admin_createtime = #{adminCreatetime,jdbcType=TIMESTAMP},
+      admin_updatetime = #{adminUpdatetime,jdbcType=TIMESTAMP},
+      admin_deletetime = #{adminDeletetime,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select admin_id, admin_name, admin_password, admin_salt, admin_type, admin_isvalid, 
+    admin_createtime, admin_updatetime, admin_deletetime
+    from back_login
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select admin_id, admin_name, admin_password, admin_salt, admin_type, admin_isvalid, 
+    admin_createtime, admin_updatetime, admin_deletetime
+    from back_login
+  </select>
+
+  <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select admin_id, admin_name, admin_password, admin_salt, admin_type, admin_isvalid,
+    admin_createtime, admin_updatetime, admin_deletetime
+    from back_login where admin_name=#{username}
+  </select>
+
+  <select id="getUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select admin_id, admin_name, admin_password, admin_salt, admin_type, admin_isvalid,
+    admin_createtime, admin_updatetime, admin_deletetime
+    from back_login where admin_name=#{username}
+  </select>
+</mapper>

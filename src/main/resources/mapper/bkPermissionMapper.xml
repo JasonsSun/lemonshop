@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsonshop.lemonshop.Mapper.bkPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.jsonshop.lemonshop.entity.bkPermission">
+    <constructor>
+      <idArg column="permission_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="permission_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permission_resourceType" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permission_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resource_permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permission_parentId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permission_parentIds" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="permission_isvalid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="permission_creattime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="permission_updatetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="permission_deletetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from back_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jsonshop.lemonshop.entity.bkPermission">
+    insert into back_permission (permission_id, permission_name, permission_resourceType, 
+      permission_url, resource_permission, permission_parentId, 
+      permission_parentIds, permission_isvalid, 
+      permission_creattime, permission_updatetime, 
+      permission_deletetime)
+    values (#{permissionId,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR}, #{permissionResourcetype,jdbcType=VARCHAR}, 
+      #{permissionUrl,jdbcType=VARCHAR}, #{resourcePermission,jdbcType=VARCHAR}, #{permissionParentid,jdbcType=VARCHAR}, 
+      #{permissionParentids,jdbcType=VARCHAR}, #{permissionIsvalid,jdbcType=INTEGER}, 
+      #{permissionCreattime,jdbcType=TIMESTAMP}, #{permissionUpdatetime,jdbcType=TIMESTAMP}, 
+      #{permissionDeletetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jsonshop.lemonshop.entity.bkPermission">
+    update back_permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_resourceType = #{permissionResourcetype,jdbcType=VARCHAR},
+      permission_url = #{permissionUrl,jdbcType=VARCHAR},
+      resource_permission = #{resourcePermission,jdbcType=VARCHAR},
+      permission_parentId = #{permissionParentid,jdbcType=VARCHAR},
+      permission_parentIds = #{permissionParentids,jdbcType=VARCHAR},
+      permission_isvalid = #{permissionIsvalid,jdbcType=INTEGER},
+      permission_creattime = #{permissionCreattime,jdbcType=TIMESTAMP},
+      permission_updatetime = #{permissionUpdatetime,jdbcType=TIMESTAMP},
+      permission_deletetime = #{permissionDeletetime,jdbcType=TIMESTAMP}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select permission_id, permission_name, permission_resourceType, permission_url, resource_permission, 
+    permission_parentId, permission_parentIds, permission_isvalid, permission_creattime, 
+    permission_updatetime, permission_deletetime
+    from back_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select permission_id, permission_name, permission_resourceType, permission_url, resource_permission, 
+    permission_parentId, permission_parentIds, permission_isvalid, permission_creattime, 
+    permission_updatetime, permission_deletetime
+    from back_permission
+  </select>
+
+</mapper>

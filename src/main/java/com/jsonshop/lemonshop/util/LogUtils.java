@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 
 //该类定义了不同层的日志，分别是业务层、平台、数据库层和异常。
 // 如果需要添加更多的层面，可以自己定义yaml文件以及枚举类型，并写入到工具类中即可。
+
+
+
 public class LogUtils {
 
     /**

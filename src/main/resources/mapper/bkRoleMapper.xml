@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsonshop.lemonshop.Mapper.bkRoleMapper">
+  <resultMap id="BaseResultMap" type="com.jsonshop.lemonshop.entity.bkRole">
+    <constructor>
+      <idArg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="role_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="role_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="role_creattime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="role_updatetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="role_deletetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from back_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jsonshop.lemonshop.entity.bkRole">
+    insert into back_role (role_id, role_name, role_status, 
+      role_description, role_type, role_creattime, 
+      role_updatetime, role_deletetime)
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleStatus,jdbcType=INTEGER}, 
+      #{roleDescription,jdbcType=VARCHAR}, #{roleType,jdbcType=INTEGER}, #{roleCreattime,jdbcType=TIMESTAMP}, 
+      #{roleUpdatetime,jdbcType=TIMESTAMP}, #{roleDeletetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jsonshop.lemonshop.entity.bkRole">
+    update back_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_status = #{roleStatus,jdbcType=INTEGER},
+      role_description = #{roleDescription,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=INTEGER},
+      role_creattime = #{roleCreattime,jdbcType=TIMESTAMP},
+      role_updatetime = #{roleUpdatetime,jdbcType=TIMESTAMP},
+      role_deletetime = #{roleDeletetime,jdbcType=TIMESTAMP}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select role_id, role_name, role_status, role_description, role_type, role_creattime, 
+    role_updatetime, role_deletetime
+    from back_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select role_id, role_name, role_status, role_description, role_type, role_creattime, 
+    role_updatetime, role_deletetime
+    from back_role
+  </select>
+
+</mapper>

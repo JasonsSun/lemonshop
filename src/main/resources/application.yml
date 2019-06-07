@@ -5,7 +5,7 @@ server:
     min-spare-threads: 30
   port: 8081
   servlet:
-    context-path: /scott
+    context-path: /home
 #session过期时间
     session:
        timeout: 1800s
@@ -21,6 +21,20 @@ server:
 
 
 spring:
+
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+
   # 运行环境 dev:开发环境|test:测试环境|prod:生产环境
   profiles:
     active: dev
@@ -68,6 +82,8 @@ spring:
       #是否对已备语句进行池管理（布尔值），是否对PreparedStatement进行缓存
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
+
+
 
 
 

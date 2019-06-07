@@ -9,6 +9,7 @@ public enum LogEnum {
 
     private String category;
 
+
     LogEnum(String category) {
         this.category = category;
     }
