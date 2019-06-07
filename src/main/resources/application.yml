@@ -1,1 +1,111 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8081
+  servlet:
+    context-path: /scott
+#session过期时间
+    session:
+       timeout: 1800s
+
+
+#    # 文件解析格
+#  content-type: text/html
+#    resources: # 指定静态资源的路径
+#      static-locations: classpath:/static/,classpath:/templates/
+#    # 默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+#    static-path-pattern: /**
+
+
+
+spring:
+  # 运行环境 dev:开发环境|test:测试环境|prod:生产环境
+  profiles:
+    active: dev
+  # jackson
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  devtools:
+    restart:
+      enabled: true
+  datasource:
+    name: lemonshop #数据库名称
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    druid:
+      #监控统计拦截的filters
+      filters: stat
+      driver-class-name: com.mysql.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://localhost:3306/lemonshop?useSSL=false&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+      #      useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: sunyuhang
+      password: sun@123
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      #最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请
+      min-idle: 1
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      #是否对已备语句进行池管理（布尔值），是否对PreparedStatement进行缓存
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+
+
+
+#freemarker配置
+http:
+  encoding:
+    force: true
+    charset: UTF-8
+freemarker:
+  allow-request-override: false
+  cache: false
+  check-template-location: true
+  charset: UTF-8
+  content-type: text/html; charset=utf-8
+  expose-request-attributes: false
+  expose-session-attributes: false
+  expose-spring-macro-helpers: false
+  suffix: .ftl
+  template-loader-path: classpath:/templates
+
+
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.jasonshop.lemonshop  # 注意：对应实体类的路径
+  #mapper.xml所在位置
+  mapperLocations: classpath:mapper/*.xml
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+#jackson
+jackson:
+  date-format: yyyy-MM-dd HH:mm:ss
+  time-zone: GMT+8
+
+logging:
+  config: classpath:log4j2.yml
 

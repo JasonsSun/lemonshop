@@ -4,7 +4,7 @@
 #  前端技术栈：
 #         1.Vue
 #         2.Element-UI
-#         3.Axios
+#         3.Axios  ES6
 
 
 #  后端技术栈：
@@ -14,6 +14,7 @@
 #         4.FreeMarker
 #         5.Redis
 #         6.activiti工作流
+#         7.ActiveMQ 消息中间件
 
 #  开发环境：
 #         1.JDK 1.8
